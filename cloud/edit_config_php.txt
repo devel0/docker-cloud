@@ -1,0 +1,5 @@
+ensure follow entries in config.php
+
+'overwrite.cli.url' => 'https://cloud.example.com',
+'overwriteprotocol' => 'https',
+
