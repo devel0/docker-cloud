@@ -2,6 +2,8 @@
 
 nextcloud docker
 
+> **Note** : this is a not yet generalized version and requires token replacement ( ie. example.com, my.local, ip addresses ) so inspect carefully all files before execution
+
 ## prerequisites
 
 - `/scripts/constants` with `ip_cloud_srv`, `ip_cloud_psql_srv`, `ip_cloud_sync_srv` ip addresses of cloud containers
