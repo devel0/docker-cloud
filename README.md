@@ -2,14 +2,18 @@
 
 nextcloud docker
 
-> **Note** : this is a not yet generalized version and requires token replacement ( ie. example.com, my.local, ip addresses ) so inspect carefully all files before execution
-
 ## prerequisites
 
 - `/scripts/constants` with `ip_cloud_srv`, `ip_cloud_psql_srv`, `ip_cloud_sync_srv` ip addresses of cloud containers
 - `/security/cloud_psql/postgres` clear text password of postgres db user ( must 600 mode )
 - [docker rdp](https://github.com/devel0/docker-rdp)
 - [Nextcloud-2.3.3-x86_64.AppImage](https://nextcloud.com/install/#install-clients) for cloud sync
+
+## configure
+
+| file | token | replace with |
+|---|---|---|
+| [cloud_sync/run.sh](cloud_sync/run.sh) | `cloud.example.com:172.19.0.2` | ip address of docker cloud container |
 
 ## install
 
@@ -36,3 +40,9 @@ cd cloud_sync
 ./build.sh
 ./run.sh
 ```
+
+# first configuration
+
+- connect rdp to cloud_sync ( 3389 ) container
+- double click on nextcloud desktop icon
+- configure nextcloud client ( set server adress, username/password, skip folder configuration, add sync folder connection )
