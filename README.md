@@ -53,7 +53,7 @@ cd cloud_sync
 
 - from `cloud` container
 ```
-sudo -u www-data ./occ 'files:scan' --all
+sudo -u www-data ./occ 'files:scan' --all -v
 sudo -u www-data ./occ 'files:cleanup'
 sudo -u www-data ./occ 'maintenance:mode' --on
 ```
