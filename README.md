@@ -46,3 +46,30 @@ cd cloud_sync
 - connect rdp to cloud_sync ( 3389 ) container
 - double click on nextcloud desktop icon
 - configure nextcloud client ( set server adress, username/password, skip folder configuration, add sync folder connection )
+
+# troubleshoot
+
+## file locks
+
+- from `cloud` container
+```
+sudo -u www-data ./occ 'files:scan' --all
+sudo -u www-data ./occ 'files:cleanup'
+sudo -u www-data ./occ 'maintenance:mode' --on
+```
+
+- from `cloud_psql` container
+```
+su - postgres
+psql
+\c cloud
+delete from oc_file_locks
+```
+
+- from `cloud` container
+
+```
+sudo -u www-data ./occ 'maintenance:mode' --off
+```
+
+- restart `cloud` container
