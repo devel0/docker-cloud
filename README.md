@@ -8,7 +8,6 @@ nextcloud docker
 
 - `/scripts/constants` with `ip_cloud_srv`, `ip_cloud_psql_srv`, `ip_cloud_sync_srv` ip addresses of cloud containers
 - `/security/cloud_psql/postgres` clear text password of postgres db user ( must 600 mode )
-- [docker rdp](https://github.com/devel0/docker-rdp)
 
 ## configure
 
