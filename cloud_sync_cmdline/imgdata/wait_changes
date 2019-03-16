@@ -38,6 +38,7 @@ while read path action file; do
 		[[ "$file" =~ \.nfs.* ]] || \
 		[[ "$path" =~ .*My\ Saved\ Places\..* ]] || \
 		[[ "$file" =~ \._sync.* ]] || \
+		[[ "$path" =~ /nas/SoftCollect ]] || \
 		[[ "$file" =~ .*\.tmp ]]; then continue; fi
 
 	s="path [$path] ; action [$action] ; file [$file]"
