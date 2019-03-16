@@ -9,12 +9,11 @@ nextcloud docker
 - `/scripts/constants` with `ip_cloud_srv`, `ip_cloud_psql_srv`, `ip_cloud_sync_srv` ip addresses of cloud containers
 - `/security/cloud_psql/postgres` clear text password of postgres db user ( must 600 mode )
 
-## configure
+## configure client sync
 
 | file | variable | description |
 |---|---|---|
-| [VARIABLES](VARIABLES) | `CLOUD_NAS_ROOT` | path to cloud root nas data |
-| " | `CLOUD_ADMIN_PWDFILE` | path to cloud `admin` user pass file |
+| [VARIABLES](VARIABLES) | `CLOUD_ADMIN_PWDFILE` | path to cloud `admin` user pass file |
 | " | `CLOUD_SERVER` | cloud server hostname |
 | " | `CLOUD_LOCAL_FOLDER` | nas root or other host folder to sync with remote folder | 
 | " | `CLOUD_REMOTE_FOLDER` | cloud remote folder or empty |
@@ -40,7 +39,7 @@ To avoid syncing some local folders ( relativ to CLOUD_NAS_ROOT ) insert these i
 
 Timing variables in wait_changes2:
 - `remotePollIntervalSec` ( default=30 ) : time to compare etag for remote changes detect
-- `forceSyncAfterLocalSyncSec` ( default=300 ) : when local changes happens a sync almost immediately ( 1sec ) starts and when finished etag of remote will also update but during this sync may a remote changes occurs in some minor cases so that to avoid lost of syncing between local remote in these cases a sync forced after 5 minutes. A better approach would to retrieve etag list from result of `nextcloudcmd` but actually log contains crowded information about sync scan recursive.
+- `forceSyncAfterLocalSyncSec` ( default=300 ) : when local changes happens a sync almost immediately ( 1sec ) starts and when finished etag of remote will also update but during this sync may a remote changes occurs in some minor cases so that to avoid lost of syncing between local remote in these cases a sync forced after 5 minutes. A better approach would to retrieve etag list from result of [nextcloudcmd](https://github.com/nextcloud/desktop) but actually log contains crowded information about sync scan recursive.
 - `forceSyncIntervalSec` ( default=7200 1 hr ) : a sync to avoid any issue between local, remote changes detection.
 
 ## install
