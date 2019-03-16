@@ -11,16 +11,27 @@ nextcloud docker
 
 ## configure
 
-| file | token | replace with |
+| file | variable | description |
 |---|---|---|
-| [cloud_sync_cmdline/run.sh](cloud_sync_cmdline/run.sh) | `/nas/cloud` | path to cloud root nas data |
-| | `/security/cloud/admin` | path to cloud admin pass file |
-| [cloud_sync_cmdline/imgdata/entrypoint.sh](cloud_sync_cmdline/imgdata/entrypoint.sh) | `cloud.searchathing.com` | cloud server name |
-| [cloud_sync_cmdline/imgdata/sync.sh](cloud_sync_cmdline/imgdata/sync.sh) | `cloud.searchathing.com` | cloud server name | 
-| [cloud_sync_cmdline/imgdata/update_etag](cloud_sync_cmdline/imgdata/update_etag) | `cloud.searchathing.com` | cloud server name | 
-| [cloud_sync_cmdline/imgdata/wait_changes](cloud_sync_cmdline/imgdata/wait_changes) | `/nas/cloud` | path to cloud root nas data |
+| [VARIABLES](VARIABLES) | `CLOUD_NAS_ROOT` | path to cloud root nas data |
+| " | `CLOUD_ADMIN_PWDFILE` | path to cloud `admin` user pass file |
+| " | `CLOUD_SERVER` | cloud server hostname |
+| " | `CLOUD_LOCAL_FOLDER` | nas root or other host folder to sync with remote folder | 
+| " | `CLOUD_REMOTE_FOLDER` | cloud remote folder or empty |
 
-set base folder exclusion in [sync-exclude.lst](cloud_sync_cmdline/imgdata/sync-exclude.lst)
+example
+
+```
+CLOUD_NAS_ROOT=/nas/cloud
+CLOUD_SERVER=cloud.searchathing.com
+CLOUD_ADMIN_PWDFILE=/security/cloud/admin
+CLOUD_LOCAL_FOLDER=/nas/cloud
+CLOUD_REMOTE_FOLDER=
+```
+
+### excluded sync folder
+
+To avoid syncing some local folders ( relativ to CLOUD_NAS_ROOT ) insert these in [sync-exclude.lst](cloud_sync_cmdline/imgdata/sync-exclude.lst)
 
 ## install
 
