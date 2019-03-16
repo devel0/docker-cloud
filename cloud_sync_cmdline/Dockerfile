@@ -32,6 +32,7 @@ COPY ./imgdata/sync-exclude.lst /
 COPY ./imgdata/wait_changes.conf ./imgdata/wait_changes2.conf /etc/supervisor/conf.d/
 COPY ./imgdata/sync.sh ./imgdata/wait_changes ./imgdata/wait_changes2 ./imgdata/update_etag /scripts/
 COPY ./imgdata/req_etag.xml /root
+COPY ./VARIABLES /root
 
 #====================================================================
 

@@ -1,8 +1,10 @@
 #!/bin/bash
 
+source /root/VARIABLES
+
 inotifywait \
 	-e modify,move,create,delete,delete_self \
-	-m -r /nas/cloud |
+	-m -r /nas |
 while read path action file; do
 
 	if \

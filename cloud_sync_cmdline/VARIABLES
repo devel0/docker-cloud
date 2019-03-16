@@ -1,0 +1,11 @@
+# CLOUD_LOCAL_FOLDER (host) will mapped to /nas in the container
+
+CLOUD_NAS_ROOT=/nas/cloud
+CLOUD_SERVER=cloud.searchathing.com
+CLOUD_ADMIN_PWDFILE=/security/cloud/admin
+CLOUD_LOCAL_FOLDER=/nas/cloud
+CLOUD_REMOTE_FOLDER=
+
+# other example for CLOUD_LOCAL_FOLDER and CLOUD_REMOTE_FOLDER ( as seen logging in into nextcloud web interface as admin )
+# CLOUD_LOCAL_FOLDER=/nas/cloud/myorg/HQ
+# CLOUD_REMOTE_FOLDER=HQ

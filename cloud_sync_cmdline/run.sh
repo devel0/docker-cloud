@@ -5,6 +5,7 @@
 source /scripts/constants
 source /scripts/utils.sh
 exdir=`executing_dir`
+source "$exdir"/VARIABLES
 
 container=nextcloud_client_cmd
 container_image=searchathing/nextcloud-client-cmd
@@ -29,8 +30,8 @@ docker -D run \
 	--ip="$ip_nextcloud_client_cmd" \
         --network="$net" \
         --restart="unless-stopped" \
-	--volume="/nas/cloud:/nas/cloud" \
-	--volume="/security/cloud/admin:/security/cloud/admin:ro" \
+	--volume="$CLOUD_NAS_ROOT:/nas" \
+	--volume="$CLOUD_ADMIN_PWDFILE:/security/cloud/admin:ro" \
         --cpus="$cpus" \
         --memory="$memory" \
         "$container_image"

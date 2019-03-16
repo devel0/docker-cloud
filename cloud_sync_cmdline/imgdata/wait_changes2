@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source /root/VARIABLES
+
 # remote poll interval ( 30 sec )
 remotePollIntervalSec=30
 
