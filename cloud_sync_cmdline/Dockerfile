@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN mkdir /opensource && cd /opensource && \
 	git clone https://github.com/nextcloud/desktop.git
 
-RUN apt-get update
+RUN echo "updating packages" && apt-get update
 
 RUN apt-get -y install \
 	cmake libssl-dev zlib1g-dev pkg-config libglib2.0-dev \
@@ -23,6 +23,15 @@ RUN cd /opensource/desktop && \
 	cmake .. && \
 	make -j 4 && \
 	make install && ldconfig
+
+RUN apt-get -y install inotify-tools
+
+RUN mkdir /scripts
+
+COPY ./imgdata/sync-exclude.lst /
+COPY ./imgdata/wait_changes.conf ./imgdata/wait_changes2.conf /etc/supervisor/conf.d/
+COPY ./imgdata/sync.sh ./imgdata/wait_changes ./imgdata/wait_changes2 ./imgdata/update_etag /scripts/
+COPY ./imgdata/req_etag.xml /root
 
 #====================================================================
 

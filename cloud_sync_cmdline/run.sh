@@ -11,7 +11,7 @@ container_image=searchathing/nextcloud-client-cmd
 net=nextcloud_client_cmd
 ip="$ip_nextcloud_client_cmd_srv"
 cpus="4"
-memory="2g"
+memory="256m"
 
 dk-rm-if-exists $container $1
 
@@ -29,6 +29,8 @@ docker -D run \
 	--ip="$ip_nextcloud_client_cmd" \
         --network="$net" \
         --restart="unless-stopped" \
+	--volume="/nas/cloud:/nas/cloud" \
+	--volume="/security/cloud/admin:/security/cloud/admin:ro" \
         --cpus="$cpus" \
         --memory="$memory" \
         "$container_image"

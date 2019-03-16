@@ -1,0 +1,3 @@
+#!/bin/bash
+
+curl --netrc-file /root/curl-rc https://cloud.searchathing.com/remote.php/dav/files/admin -X PROPFIND --data "`cat ~/req_etag`" -s -o /root/res_etag.xml
