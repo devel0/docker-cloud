@@ -2,18 +2,26 @@
 
 nextcloud docker
 
+*old version with gui* [here](https://github.com/devel0/docker-cloud/tree/85370dc6a08002e2ba1011599a4bb974b09bfd1d)
+
 ## prerequisites
 
 - `/scripts/constants` with `ip_cloud_srv`, `ip_cloud_psql_srv`, `ip_cloud_sync_srv` ip addresses of cloud containers
 - `/security/cloud_psql/postgres` clear text password of postgres db user ( must 600 mode )
 - [docker rdp](https://github.com/devel0/docker-rdp)
-- [Nextcloud-2.3.3-x86_64.AppImage](https://nextcloud.com/install/#install-clients) for cloud sync
 
 ## configure
 
 | file | token | replace with |
 |---|---|---|
-| [cloud_sync/run.sh](cloud_sync/run.sh) | `cloud.example.com:172.19.0.2` | ip address of docker cloud container |
+| [cloud_sync_cmdline/run.sh](cloud_sync_cmdline/run.sh) | `/nas/cloud` | path to cloud root nas data |
+| | `/security/cloud/admin` | path to cloud admin pass file |
+| [cloud_sync_cmdline/imgdata/entrypoint.sh](cloud_sync_cmdline/imgdata/entrypoint.sh) | `cloud.searchathing.com` | cloud server name |
+| [cloud_sync_cmdline/imgdata/sync.sh](cloud_sync_cmdline/imgdata/sync.sh) | `cloud.searchathing.com` | cloud server name | 
+| [cloud_sync_cmdline/imgdata/update_etag](cloud_sync_cmdline/imgdata/update_etag) | `cloud.searchathing.com` | cloud server name | 
+| [cloud_sync_cmdline/imgdata/wait_changes](cloud_sync_cmdline/imgdata/wait_changes) | `/nas/cloud` | path to cloud root nas data |
+
+set base folder exclusion in [sync-exclude.lst](cloud_sync_cmdline/imgdata/sync-exclude.lst)
 
 ## install
 
@@ -33,43 +41,10 @@ cd cloud
 cd ..
 ```
 
-- install cloud_sync
+- install cloud_sync_cmdline
 
 ```
-cd cloud_sync
+cd cloud_sync_cmdline
 ./build.sh
 ./run.sh
 ```
-
-# first configuration
-
-- connect rdp to cloud_sync ( 3389 ) container
-- double click on nextcloud desktop icon
-- configure nextcloud client ( set server adress, username/password, skip folder configuration, add sync folder connection )
-
-# troubleshoot
-
-## file locks
-
-- from `cloud` container
-```
-sudo -u www-data ./occ 'files:scan' --all -v
-sudo -u www-data ./occ 'files:cleanup'
-sudo -u www-data ./occ 'maintenance:mode' --on
-```
-
-- from `cloud_psql` container
-```
-su - postgres
-psql
-\c cloud
-delete from oc_file_locks
-```
-
-- from `cloud` container
-
-```
-sudo -u www-data ./occ 'maintenance:mode' --off
-```
-
-- restart `cloud` container
