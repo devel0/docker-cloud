@@ -46,6 +46,7 @@ while true; do
 			if [ "$nowetag" != "$origetag" ]; then
 				origetag="$nowetag"
 				echo "---> detected remote changes"
+				echo "  $(date)"
 				remotechanged=1
 				break;
 			fi
@@ -53,12 +54,14 @@ while true; do
 
 		if (( ( $localchanged == 1 ) && ( $elapsed >= $forceSyncAfterLocalSyncSec ) )); then
 			echo "---> force sync after local change"
+			echo "  $(date)"
 			localchanged=0
 			break;
 		fi
 
 		if (( $elapsed >= $forceSyncIntervalSec )); then
 			echo "---> force sync"
+			echo "  $(date)"
 			localchanged=0
 			break;
 		fi
