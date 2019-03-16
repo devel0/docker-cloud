@@ -30,7 +30,8 @@ CLOUD_REMOTE_FOLDER=
 
 ### excluded sync folder
 
-To avoid syncing some local folders ( relativ to CLOUD_NAS_ROOT ) insert these in [sync-exclude.lst](cloud_sync_cmdline/imgdata/sync-exclude.lst)
+- To avoid syncing some local folders ( relativ to CLOUD_NAS_ROOT ) insert these in [sync-exclude.lst](cloud_sync_cmdline/imgdata/sync-exclude.lst)
+- To avoid start sync after a local change in some folder edit list in [cloud_sync_cmdline/imgdata/wait_changes](wait_changes) ( eg. /nas/SoftCollect where /nas is the path in container local filesystem )
 
 ## how it works
 
