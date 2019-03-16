@@ -30,7 +30,7 @@ docker -D run \
 	--ip="$ip_nextcloud_client_cmd" \
         --network="$net" \
         --restart="unless-stopped" \
-	--volume="$CLOUD_NAS_ROOT:/nas" \
+	--volume="$CLOUD_LOCAL_FOLDER:/nas" \
 	--volume="$CLOUD_ADMIN_PWDFILE:/security/cloud/admin:ro" \
         --cpus="$cpus" \
         --memory="$memory" \
