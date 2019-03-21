@@ -21,7 +21,6 @@ nextcloud docker
 example
 
 ```
-CLOUD_NAS_ROOT=/nas/cloud
 CLOUD_SERVER=cloud.searchathing.com
 CLOUD_ADMIN_PWDFILE=/security/cloud/admin
 CLOUD_LOCAL_FOLDER=/nas/cloud
