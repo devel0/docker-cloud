@@ -3,6 +3,8 @@
 source /scripts/constants
 source /scripts/utils.sh
 
+exdir="$(dirname `readlink -f "$0"`)"
+
 container=cloud_psql
 container_image=postgres:10.0
 net=cloud_psql
@@ -19,6 +21,7 @@ docker run \
 	--network="$net" \
 	--ip="$ip" \
 	--restart="unless-stopped" \
+	--volume="$exdir/removefilelocks.sql:/removefilelocks.sql" \
 	--volume="/nas/data/cloud_psql:/var/lib/postgresql/data" \
 	--env="POSTGRES_PASSWORD=`cat /security/cloud_psql/postgres`" \
 	--cpus="$cpus" \
