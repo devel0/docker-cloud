@@ -5,8 +5,6 @@ if [ ! -e /root/initialized ]; then
 fi
 
 source /root/VARIABLES
-chmod 700 /nas
-chmod 700 /security
 
 echo "machine $CLOUD_SERVER login admin password `cat /security/cloud/admin`" > /root/curl-rc
 
