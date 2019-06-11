@@ -67,3 +67,44 @@ cd cloud_sync_cmdline
 ./build.sh
 ./run.sh
 ```
+
+## nginx conf and brute force defense
+
+Use a nginx conf so that real source ip address gets encapsulated into header as x_forwarded_for; this will allow nginx when configured properly ( see below ) to extract sender ip and make brute force attack defense mechanism to block that ip. **Note** that if nginx proxy server is in use and nextcloud is not configured to handle x_forwarded_for protocol this could result in mitigation of login ( slower login ) for all users because nextcloud will classify all other non attacker users with the same ip address ( the nginx proxy one ).
+
+```nginx
+server {
+	listen 443 ssl;
+	listen [::]:443 ssl;
+
+	root /var/www/html;
+
+	server_name cloud.mydomain.com;
+
+	location / {
+		include /etc/nginx/mime.types;
+
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		proxy_pass http://cloud.mydomain.com;
+		proxy_set_header Host $host;
+	}
+}
+```
+
+To configure nextcloud to work within x_forwarded_proto ensure follow lines into `config/config.php` then restart container:
+
+```
+  'trusted_proxies' => array('172.19.0.2'),
+  'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+```
+
+replacing 172.19.0.2 with your own nginx server ip address ( you can take a look at postgres db table `oc_bruteforce_attempts` to see ip address that nextcloud recognizes afterwards an authentication failure )
+
+```sh
+dk-exec cloud_psql
+su - postgres
+psql
+\c cloud
+select * from oc_bruteforce_attempts;
+```
