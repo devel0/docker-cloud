@@ -108,3 +108,7 @@ psql
 \c cloud
 select * from oc_bruteforce_attempts;
 ```
+
+## other related resources
+
+- [nextcloud-sync-cron](https://github.com/qcif/nextcloud-sync-cron)
