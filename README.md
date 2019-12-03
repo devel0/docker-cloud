@@ -60,6 +60,8 @@ cd cloud
 cd ..
 ```
 
+- edit your `/nas/data/cloud/config/config.php` so that matches required `https` ( see [info](cloud/edit_config_php.txt) )
+
 - install cloud_sync_cmdline
 
 ```
