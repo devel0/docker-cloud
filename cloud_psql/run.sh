@@ -1,29 +1,33 @@
 #!/bin/bash
 
-source /scripts/constants
-source /scripts/utils.sh
+exdir=$(dirname `readlink -f "$0"`)
 
-exdir="$(dirname `readlink -f "$0"`)"
-
-container=cloud_psql
-container_image=postgres:10.0
-net=cloud_psql
-ip="$ip_cloud_psql_srv"
+container=cloud-psql
+container_image=postgres:11.5
+net=cloud-psql
 cpus="3"
 memory="512m"
 
 dk-rm-if-exists "$container"
+
+pgpass="$(get-credential cloud-psql-postgres)"
+if [ "$?" != "0" ]; then
+	pgpass="$(cat /security/cloud_psql/postgres)"
+fi
+if [ "$pgpass" == "" ]; then
+	echo "unable to find pg credential provider"
+	exit 1
+fi
 
 docker run \
 	-d \
 	--name="$container" \
 	--hostname="$container" \
 	--network="$net" \
-	--ip="$ip" \
 	--restart="unless-stopped" \
 	--volume="$exdir/removefilelocks.sql:/removefilelocks.sql" \
-	--volume="/nas/data/cloud_psql:/var/lib/postgresql/data" \
-	--env="POSTGRES_PASSWORD=`cat /security/cloud_psql/postgres`" \
+	--volume="/nas/data/cloud-psql:/var/lib/postgresql/data" \
+	--env="POSTGRES_PASSWORD=$pgpass" \
 	--cpus="$cpus" \
 	--memory="$memory" \
 	"$container_image"
