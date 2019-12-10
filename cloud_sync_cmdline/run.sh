@@ -2,14 +2,13 @@
 
 #set -x
 
-source /scripts/constants
-source /scripts/utils.sh
-exdir=`executing_dir`
+exdir=$(dirname `readlink -f "$0"`)
+
 source "$exdir"/VARIABLES
 
-container=nextcloud_client_cmd
+container=cloud-sync
 container_image=searchathing/nextcloud-client-cmd
-net=nextcloud_client_cmd
+net=cloud-sync
 ip="$ip_nextcloud_client_cmd_srv"
 cpus="4"
 memory="256m"
