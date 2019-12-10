@@ -5,6 +5,7 @@ if [ ! -e /root/initialized ]; then
 fi
 
 source /root/VARIABLES
+mkdir -p /nas/.local/share/nextcloudcmd
 
 echo "machine $CLOUD_SERVER login admin password `cat /security/cloud/admin`" > /root/curl-rc
 
@@ -12,7 +13,9 @@ service rsyslog start
 service supervisor start
 
 l=/var/log/wait_changes2.out.log
+l2=/lastsync.log
 touch $l
-tail -f $l
+touch $l2
+tail -f $l $l2
 
 $1
