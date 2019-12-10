@@ -1,9 +1,6 @@
 #!/bin/bash
 
-source /scripts/constants
-source /scripts/utils.sh
-
-exdir=`executing_dir`
+exdir=$(dirname `readlink -f "$0"`)
 container_image=searchathing/nextcloud-client-cmd
 
 args=""
