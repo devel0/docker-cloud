@@ -1,4 +1,4 @@
-FROM searchathing/dotnet:bionic
+FROM searchathing/dotnet:server-mgr
 
 ENV HOME /root
 ENV DEBIAN_FRONTEND noninteractive
