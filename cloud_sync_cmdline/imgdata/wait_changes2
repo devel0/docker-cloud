@@ -23,7 +23,7 @@ localchanged=0
 remotechanged=0
 
 while true; do
-	echo "syncing..."
+	echo "$(date): syncing..."
 	/scripts/sync.sh
 	echo "done."
 
