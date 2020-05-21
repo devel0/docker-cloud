@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -f /var/log/wait_changes*
+
 if [ ! -e /root/initialized ]; then
 	touch /root/initialized
 fi
