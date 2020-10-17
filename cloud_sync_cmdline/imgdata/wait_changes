@@ -1,5 +1,17 @@
 #!/bin/bash
 
+while true; do
+	/scripts/sync.sh
+	echo "$(date): sleep 300sec"
+	sleep 300
+done
+
+exit 0
+
+#
+# DISABLED
+#
+
 source /root/VARIABLES
 
 inotifywait \

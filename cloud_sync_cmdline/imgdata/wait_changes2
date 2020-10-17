@@ -1,5 +1,15 @@
 #!/bin/bash
 
+while true; do
+	sleep 60
+done
+
+exit 0
+
+#
+# DISABLED
+#
+
 source /root/VARIABLES
 
 # remote poll interval ( 30 sec )
