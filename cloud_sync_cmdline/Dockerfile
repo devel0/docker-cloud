@@ -18,6 +18,9 @@ RUN apt-get -y install \
 	libkf5kio-dev doxygen appstream \
 	software-properties-common build-essential mesa-common-dev libdbus-1-dev libqt5webkit5-dev
 
+RUN apt-get -y install \
+	libqt5svg5-dev qtquickcontrols2-5-dev
+
 RUN cd /opensource/desktop && \
 	mkdir build && cd build && \
 	cmake .. && \

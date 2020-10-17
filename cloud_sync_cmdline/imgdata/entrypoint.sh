@@ -14,7 +14,7 @@ echo "machine $CLOUD_SERVER login admin password `cat /security/cloud/admin`" > 
 service rsyslog start
 service supervisor start
 
-l=/var/log/wait_changes2.out.log
+l=/var/log/wait_changes.out.log
 l2=/lastsync.log
 touch $l
 touch $l2
