@@ -3,7 +3,7 @@
 dk-rm-if-exists "$container"
 
 container=cloud
-container_image=nextcloud:17.0.1
+container_image=nextcloud:20
 net=cloud
 cpus="4"
 memory="2g"
