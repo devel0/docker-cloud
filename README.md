@@ -98,6 +98,9 @@ docker run cloudsync nextcloudcmd ARGS
 example
 
 ```sh
+mkdir /root/scripts
+cp sync-exclude.lst /root/scripts
+
 docker run \
 	-v /root/scripts/sync-exclude.lst:/sync-exclude.lst \
     -v /nas:/nas \
