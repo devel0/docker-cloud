@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source /root/VARIABLES
-
-curl --netrc-file /root/curl-rc https://$CLOUD_SERVER/remote.php/dav/files/admin -X PROPFIND --data "`cat ~/req_etag.xml`" -s -o /root/res_etag.xml
