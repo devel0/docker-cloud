@@ -16,6 +16,8 @@ RUN \
 RUN mkdir /opensource && cd /opensource && \
         git clone https://github.com/nextcloud/desktop.git
 
+# git version (last check): fd05eba8f013a722477b6a9cc2037d50a91bc112
+
 RUN \
         apt install -y \
         libaccounts-qt6-dev libadwaitaqt6-dev libappstreamqt-dev libcgal-qt6-dev \
