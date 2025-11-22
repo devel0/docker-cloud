@@ -102,14 +102,13 @@ mkdir /root/scripts
 cp sync-exclude.lst /root/scripts
 
 docker run \
-	-v /root/scripts/sync-exclude.lst:/sync-exclude.lst \
-    -v /nas:/nas \
-    cloudsync \
-    nextcloudcmd \
-    --unsyncedfolders /sync-exclude.lst \
-    --path myremotefolder \
-    /nas/mylocalfolder \
-    https://admin:$(cat /security/cloud/admin)@cloud.my.com	
+	-v /root/scripts/sync-exclude.lst:/etc/Nextcloud/sync-exclude.lst \
+  -v /nas:/nas \
+  cloudsync \
+  nextcloudcmd \
+  --path myremotefolder \
+  /nas/mylocalfolder \
+  https://admin:$(cat /security/cloud/admin)@cloud.my.com
 ```
 
 note: the cloud client cmd executes one-shot and then terminate without looking further changes ; the above command can be easily wrapped into a script that executes the command in a loop with some delay between executions
